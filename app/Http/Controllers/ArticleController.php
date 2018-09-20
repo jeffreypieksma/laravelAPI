@@ -41,16 +41,18 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $title = $request->input('title');
-        $content = $request->input('content');
+       
 
         if ($request->isMethod('post')) {
             $article = new Article;
         }
 
         if ($request->isMethod('put')) {
-            $article = Article::findOrFail($request->article_id);
+            $article = Article::findOrFail($request->id);
         }
+
+        $article->title = $request->input('title');
+        $article->content = $request->input('content');
 
         if($article->save()){
             return new ArticleResource($article);
