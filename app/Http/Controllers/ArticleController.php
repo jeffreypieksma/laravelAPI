@@ -19,8 +19,12 @@ class ArticleController extends Controller
     {
         $articles = Article::paginate(5);
         return ArticleResource::collection($articles);
-       
     }
+    public function indexBackend(){
+        $articles = Article::all();
+        return view('articles', compact('articles'));
+    }   
+    
 
     /**
      * Show the form for creating a new resource.

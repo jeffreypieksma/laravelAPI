@@ -13,21 +13,26 @@ use Illuminate\Http\Request;
 |
 */
 
+//localhost/api/articles&api_token=7ae54b011a2eea894d30f77ee4378b7345d3895786addb17df03047c69d9
+
+Route::group(['middleware' => ['auth:api']], function () {
+  //Article list
+	Route::get('articles', 'ArticleController@index');
+
+	//Single article
+	Route::get('article/{id}', 'ArticleController@show');
+
+	//Create new article
+	Route::post('article', 'ArticleController@store');
+
+	//Update article 
+	Route::put('article', 'ArticleController@store');
+
+	//Delete article
+	Route::delete('article/{id}', 'ArticleController@destroy');
+});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Article list
-Route::get('articles', 'ArticleController@index');
-
-//Single article
-Route::get('article/{id}', 'ArticleController@show');
-
-//Create new article
-Route::post('article', 'ArticleController@store');
-
-//Update article 
-Route::put('article', 'ArticleController@store');
-
-//Delete article
-Route::delete('article/{id}', 'ArticleController@destroy');
