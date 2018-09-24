@@ -13,9 +13,16 @@ use Illuminate\Http\Request;
 |
 */
 
-//localhost/api/articles&api_token=7ae54b011a2eea894d30f77ee4378b7345d3895786addb17df03047c69d9
+//localhost/api/articles?api_token=7ae54b011a2eea894d30f77ee4378b7345d3895786addb17df03047c69d9
 
-Route::group(['middleware' => ['auth:api']], function () {
+
+Route::group(['middleware' => 'auth:api'], function () {
+
+	//User
+	Route::get('user', function (Request $request){
+		return $request->user();
+	});
+
   //Article list
 	Route::get('articles', 'ArticleController@index');
 
@@ -31,8 +38,3 @@ Route::group(['middleware' => ['auth:api']], function () {
 	//Delete article
 	Route::delete('article/{id}', 'ArticleController@destroy');
 });
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-

@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Article;
-use App\Http\Requests;
-use App\Http\Resources\Article as ArticleResource;
+use App\User;
 
-class ArticleController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,14 +15,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::paginate(5);
-        return ArticleResource::collection($articles);
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
-    public function indexBackend(){
-        $articles = Article::all();
-        return view('articles', compact('articles'));
-    }   
-    
 
     /**
      * Show the form for creating a new resource.
@@ -44,20 +37,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-       
-        if ($request->isMethod('post')) $article = new Article;
-        
-        if ($request->isMethod('put')) $article = Article::findOrFail($request->id);     
-
-        $article->title = $request->input('title');
-        $article->content = $request->input('content');
-
-        if($article->save()){
-            return response(null, 200);
-            return new ArticleResource($article);
-        }
-
+        //
     }
 
     /**
@@ -68,8 +48,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        $article = Article::findOrFail($id);
-        return new ArticleResource($article);
+        //
     }
 
     /**
@@ -103,14 +82,6 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-
-        $article = Article::FindOrfail($id);
-
-        if ($article->delete()) {
-            return response(null, 204);
-            return new ArticleResource($article);
-        }
-
-        
+        //
     }
 }

@@ -17,8 +17,9 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => bcrypt('password'), // secret
-        'api_token' => bin2hex(openssl_random_pseudo_bytes(30)),
+        'password' => bcrypt('password'),
+        'is_admin' => 1,
+        'api_token' => str_random(60),
         'remember_token' => str_random(10),
     ];
 });

@@ -4,6 +4,11 @@ namespace App\Http\Middleware;
 
 use Closure;
 
+use Illuminate\Contracts\Auth\Guard;
+
+use Auth;
+use App\User;
+
 class Api
 {
 
@@ -15,21 +20,16 @@ class Api
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+
+
+    public function handle($request, Closure $next, $guard = null)
     {
-        /*
-        
-        200 = OK 
-        401 = Unauthorized
-         */
-
         // if(empty($request->api_token)){
-        //     return response()->json(['code' => '401','error' => 'No api_token provided']);
-        // }else{
-
+        //     //return response()->json(['code' => '401 UNAUTHORIZED', 'content' => 'No api_token provided']);
+        //     return response('Unauthorized.', 401);
         // }
-
 
         return $next($request);
     }
+
 }
