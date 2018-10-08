@@ -13,10 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-//localhost/api/articles?api_token=7ae54b011a2eea894d30f77ee4378b7345d3895786addb17df03047c69d9
+Route::group(['middleware' => 'cors'], function () {
 
-
-Route::group(['middleware' => 'auth:api'], function () {
+//Route::group(['middleware' => ['cors', 'api']], function () {
 
 	//User
 	Route::get('user', function (Request $request){
@@ -30,10 +29,10 @@ Route::group(['middleware' => 'auth:api'], function () {
 	Route::get('article/{id}', 'ArticleController@show');
 
 	//Create new article
-	Route::post('article', 'ArticleController@store');
+	Route::post('article/store', 'ArticleController@store');
 
 	//Update article 
-	Route::put('article', 'ArticleController@store');
+	Route::put('article/update', 'ArticleController@update');
 
 	//Delete article
 	Route::delete('article/{id}', 'ArticleController@destroy');

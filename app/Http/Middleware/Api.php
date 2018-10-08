@@ -4,11 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-use Illuminate\Contracts\Auth\Guard;
-
-use Auth;
-use App\User;
-
 class Api
 {
 
@@ -28,6 +23,16 @@ class Api
         //     //return response()->json(['code' => '401 UNAUTHORIZED', 'content' => 'No api_token provided']);
         //     return response('Unauthorized.', 401);
         // }
+        // 
+        
+        $api_token = $request->header('api_token');
+
+        // if(!isset($_SERVER['api_token'])){  
+
+        //     return Response::json(array('error'=-->'Please set custom header'));  
+
+        // }  
+
 
         return $next($request);
     }
