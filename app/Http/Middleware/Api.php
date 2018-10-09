@@ -4,10 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 
+use App\User;
+
 class Api
 {
-
-
     /**
      * Handle an incoming request.
      *
@@ -16,25 +16,22 @@ class Api
      * @return mixed
      */
 
-
     public function handle($request, Closure $next, $guard = null)
     {
-        // if(empty($request->api_token)){
-        //     //return response()->json(['code' => '401 UNAUTHORIZED', 'content' => 'No api_token provided']);
-        //     return response('Unauthorized.', 401);
+
+        // $api_token = $request->header('api_token');
+
+        // if(!$api_token){
+        //     return response('No authorization token provided', 401);
         // }
-        // 
-        
-        $api_token = $request->header('api_token');
 
-        // if(!isset($_SERVER['api_token'])){  
+        // $token = User::where('api_token', $api_token)->get();
 
-        //     return Response::json(array('error'=-->'Please set custom header'));  
 
-        // }  
-
+        // if(!$token) return response('Invalid authorization token', 403);
 
         return $next($request);
+
     }
 
 }

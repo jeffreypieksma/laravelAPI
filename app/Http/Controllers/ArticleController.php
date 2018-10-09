@@ -17,6 +17,15 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
+        //Send data with relation
+        $api_token = $request->header('api_token');
+       
+        if ($request->isJson()) {
+           
+        }
+
+        //$articles = Article::with('user')->get();
+
         $articles = Article::paginate(5);
         return ArticleResource::collection($articles);
 
@@ -69,25 +78,14 @@ class ArticleController extends Controller
         $data = $request->all();
         
         if (!$request->isMethod('put')) return;
-        
-        $article = Article::findOrFail($request->id);
 
         $data = $request->data;
         
-        $article->title = 'test123';
-        $article->content = 'hallo';
-        // dd( $title ):
+        $article = Article::findOrFail($request->id);
 
-        // $article->title  = $data['title'];
-        // $article->content = $data['content'];
+        $article->title  = $data['title'];
+        $article->content = $data['content'];
         
-        // $foreach ($request->data as $data) {
-        //     $article->title  = $data['title'];
-        //     $article->content = $data['content'];
-        // }  
-
-        // $article->title = $request->input('title');
-        // $article->content = $request->input('content');
 
         if($article->save()){
             return response('succes!', 200);

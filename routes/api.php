@@ -13,14 +13,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['middleware' => 'cors'], function () {
+//Route::group(['middleware' => 'api'], function () {
 
-//Route::group(['middleware' => ['cors', 'api']], function () {
+Route::group(['middleware' => ['cors', 'api']], function () {
 
 	//User
 	Route::get('user', function (Request $request){
 		return $request->user();
 	});
+
+	Route::post('login', 'UserController@authenticate');
+	Route::post('logout', 'UserController@logout');
+	Route::post('user/details', 'UserController@getUserDetails');
 
   //Article list
 	Route::get('articles', 'ArticleController@index');
