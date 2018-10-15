@@ -60,10 +60,14 @@
               <label for="password_confirm">Password confirm</label> 
               <input type="password" class="form-control" name="password_confirm" placeholder="password_confirm" id="password_confirm" value="">
             </div>
-
-
-            
+ 
             <a href="{{ route('delete_user', ['id' => $user->id])}}" 
+              class="delete btn button btn-primary danger"
+                onclick="return confirm('Weet je het zeker? ') ">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Verwijder
+            </a>
+
+             <a href="{{ route('delete_user', ['id' => $user->id])}}" 
               class="delete btn button btn-primary danger"
                 onclick="return confirm('Weet je het zeker? ') ">
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Verwijder

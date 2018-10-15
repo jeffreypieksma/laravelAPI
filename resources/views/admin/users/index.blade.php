@@ -20,7 +20,7 @@
         </div>
         <table class="table table-dark table-striped" id="dataTable">
           <thead class="thead-dark">
-            <tr><th>Name</th><th>E-mail</th><th>Role<th>API_TOKEN</th></tr>
+            <tr><th>Name</th><th>E-mail</th><th>Role<th></tr>
           </thead>
           <tbody>
             @foreach($users as $user)
@@ -29,9 +29,7 @@
                 <td>{{$user->email}}</td>
                 
                 <td>{{$user->is_admin === 1 ? "User" : "Admin" }}</td>
-                <td>{{$user->api_token}}</td>
-           
-
+        
               </tr>
             @endforeach
           </tbody>
