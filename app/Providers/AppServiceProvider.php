@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Laravel\Passport\Passport;
+
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Resources\Json\Resource;
 
@@ -26,6 +28,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Passport::routes();
     }
 }
