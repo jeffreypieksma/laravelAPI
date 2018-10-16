@@ -15,6 +15,11 @@ use Illuminate\Http\Request;
 
 Route::post('register', 'UserController@register');
 
+Route::get('/callback/{provider}', 'SocialAuthController@callback');
+
+Route::get('/redirect', 'SocialAuthTwitterController@redirect');
+Route::get('/callback', 'SocialAuthTwitterController@callback');
+
 Route::group(['middleware' => 'auth:api'], function () {
 
 	//User
@@ -22,13 +27,11 @@ Route::group(['middleware' => 'auth:api'], function () {
 		return $request->user();
 	});
 
-	
-
 	Route::post('login', 'UserController@authenticate');
 	Route::post('logout', 'UserController@logout');
 	Route::post('user/details', 'UserController@getUserDetails');
 
-  //Article list
+  	//Article list
 	Route::get('articles', 'ArticleController@index');
 
 	//Single article
