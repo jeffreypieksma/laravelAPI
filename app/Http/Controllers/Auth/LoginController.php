@@ -36,4 +36,20 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function authenticate(Request $request)
+    {
+      $credentials = $request->only('email', 'password');
+      /* Return a api_token */
+      if (Auth::attempt($credentials)) {
+        $user_id = Auth::id();
+        return \Response::json([
+          'user_id' => $user_id
+        ], 200 );
+        
+      }else{
+          return response('The login credentials do not match our database', 401);
+      }
+    }
+  
 }

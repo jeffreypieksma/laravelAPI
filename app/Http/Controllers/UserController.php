@@ -1,15 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Session;
 
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\User;
 use \Crypt;
-
 use Illuminate\Support\Facades\Auth; 
 use Validator;
+
 
 class UserController extends Controller
 {
@@ -20,22 +20,7 @@ class UserController extends Controller
 
     return view('admin.users.index', compact('users'));
   }
-
-  public function authenticate(Request $request)
-  {
-    $credentials = $request->only('email', 'password');
-
-    if (Auth::attempt($credentials)) {
-      $user_id = Auth::id();
-      return \Response::json([
-        'user_id' => $user_id
-      ], 200 );
-      
-    }else{
-        return response('The login credentials do not match our database', 401);
-    }
-  }
-
+  
   public function getUserDetails(Request $request){
     $id = $request->user_id;
     $user = User::find($id);

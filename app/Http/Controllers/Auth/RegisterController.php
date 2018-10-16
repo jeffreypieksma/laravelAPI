@@ -69,4 +69,14 @@ class RegisterController extends Controller
             'api_token' => str_random(60),
         ]);
     }
+
+    
+  public function register(Request $request){
+    
+    $request->validate([
+        'email' => 'required',
+        'name' => 'required',
+        'password' => 'required'
+    ]);
+  }
 }
