@@ -15,12 +15,7 @@ use Illuminate\Http\Request;
 
 Route::post('register', 'UserController@register');
 
-Route::get('/callback/{provider}', 'SocialAuthController@callback');
-
-Route::get('/redirect', 'SocialAuthTwitterController@redirect');
-Route::get('/callback', 'SocialAuthTwitterController@callback');
-
-Route::group(['middleware' => 'auth:api'], function () {
+Route::group(['middleware' => 'api'], function () {
 
 	//User
 	Route::get('user', function (Request $request){
@@ -32,17 +27,17 @@ Route::group(['middleware' => 'auth:api'], function () {
 	Route::post('user/details', 'UserController@getUserDetails');
 
   	//Article list
-	Route::get('articles', 'ArticleController@index');
+	Route::get('articles', 'ArticleApiController@index');
 
 	//Single article
-	Route::get('article/{id}', 'ArticleController@show');
+	Route::get('article/{id}', 'ArticleApiController@show');
 
 	//Create new article
-	Route::post('article/store', 'ArticleController@store');
+	Route::post('article/store', 'ArticleApiController@store');
 
 	//Update article 
-	Route::put('article/update', 'ArticleController@update');
+	Route::put('article/update', 'ArticleApiController@update');
 
 	//Delete article
-	Route::delete('article/{id}', 'ArticleController@destroy');
+	Route::delete('article/{id}', 'ArticleApiController@destroy');
 });

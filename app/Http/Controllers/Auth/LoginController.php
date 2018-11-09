@@ -50,6 +50,5 @@ class LoginController extends Controller
       }else{
           return response('The login credentials do not match our database', 401);
       }
-    }
-  
+    } 
 }

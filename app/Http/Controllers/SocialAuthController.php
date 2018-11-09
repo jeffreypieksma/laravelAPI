@@ -1,22 +1,25 @@
 <?php
 
-// SocialAuthTwitterController.php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Socialite;
+use App\Services\SocialTwitterAccountService;
 
-class SocialAuthTwitterController extends Controller
+class SocialAuthController extends Controller
 {
   /**
    * Create a redirect method to twitter api.
    *
    * @return void
    */
-    public function redirect()
+    public function redirect($redirect)
     {
-        return Socialite::driver('twitter')->redirect();
+        $providers = (array) ['facebook', 'twitter'];
+        
+        if (!in_array($redirect, $providers)) return;
+        
+        return Socialite::driver($redirect)->redirect();
     }
 
     /**
@@ -24,8 +27,10 @@ class SocialAuthTwitterController extends Controller
      *
      * @return callback URL from twitter
      */
-    public function callback()
+    public function callback(SocialTwitterAccountService $service)
     {
-       
+        $user = $service->createOrGetUser(Socialite::driver('twitter')->user());
+        auth()->login($user);
+        return redirect()->to('/home');
     }
 }

@@ -14,11 +14,13 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('logout','Auth\LoginController@logout')->name('logout');
 Route::get('/articles', 'ArticleController@indexBackend')->name('articles');
+Route::get('/article/{id}', 'ArticleController@readBackend')->name('article');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth' ], function () {
 
+	Route::get('/', 'admin\AdminController@index')->name('admin');
 	//list users
 	Route::get('/users', 'userController@index')->name('admin_users');
 
@@ -33,3 +35,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth' ], function () {
 });
 
 Auth::routes();
+// Route::get('/callback/{provider}', 'SocialAuthController@callback');
+Route::get('/redirect/{provider}', 'SocialAuthController@redirect');
+Route::get('/callback', 'SocialAuthController@callback');

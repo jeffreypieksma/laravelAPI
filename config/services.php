@@ -36,14 +36,11 @@ return [
     ],
 
     'twitter' => [
-        'client_id' => env('46p3li50ikvolfHwk9ZhtayUv'),        
-        'client_secret' => env('BywjYQ3sOff0OpJOWwG801kEKYzWpKGKFQKtqL6sA3BNHHNhJp'),
-        'redirect' => 'http://laravelapi.local/callback/twitter',
+        'client_id' => env('TWITTER_CLIENT_ID'),        
+        'client_secret' => env('TWITTER_CLIENT_SECRET'),
+        'redirect' => 'http://laravelapi.local/callback',
     ],
 
-    // 46p3li50ikvolfHwk9ZhtayUv (API key)
-
-    // BywjYQ3sOff0OpJOWwG801kEKYzWpKGKFQKtqL6sA3BNHHNhJp (API secret key)
 
     // 859074089822162944-P2AglIiA4CjS7O3dqOpyXZShrKN3Bel (Access token)
 
@@ -53,9 +50,9 @@ return [
     // 15909522
 
     'facebook' => [
-        'client_id' => env('GITHUB_CLIENT_ID'),
-        'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => 'http://your-callback-url',
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => 'http://laravelapi.local/callback',
     ],
 
 ];

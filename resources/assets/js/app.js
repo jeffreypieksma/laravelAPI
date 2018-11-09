@@ -7,8 +7,12 @@
 
 require('./bootstrap');
 
- $(document).ready( function () {
-      $('#dataTable').DataTable({
-      	//paging: false
-      });
-  } );
+$(document).ready( function () {
+
+    $('.sidenav').sidenav();
+    $(".dropdown-trigger").dropdown();
+    // $('#dataTable').DataTable({
+    // //paging: false
+    // });
+             
+});

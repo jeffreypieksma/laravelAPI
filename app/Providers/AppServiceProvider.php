@@ -16,6 +16,11 @@ class AppServiceProvider extends ServiceProvider
     {
         //Remove data from json obj
         Resource::withoutWrapping();
+
+        view()->composer('*', function ($view) {
+            $current_route_name = \Request::route()->getName();
+            $view->with('current_route_name', $current_route_name);
+        });
     
     }
 
