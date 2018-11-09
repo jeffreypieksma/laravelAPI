@@ -21,7 +21,7 @@
                 <div class="col m12 card-panel ">
                     <h3><a href="{{ url('article',['id'=>$article->id]) }}"> {{ $article->title }}</a> </h3>
                     <p> {{ $article->content }} </p>
-                     {{ucfirst($article->user->name)}}		
+                    <p> {{ucfirst($article->user->name)}} </p>	
                 </div>
             </div>
         @endforeach

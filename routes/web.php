@@ -15,8 +15,8 @@
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout','Auth\LoginController@logout')->name('logout');
-Route::get('/articles', 'ArticleController@indexBackend')->name('articles');
-Route::get('/article/{id}', 'ArticleController@readBackend')->name('article');
+Route::get('/articles', 'ArticleController@index')->name('articles');
+Route::get('/article/{id}', 'ArticleController@read')->name('article');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth' ], function () {
 

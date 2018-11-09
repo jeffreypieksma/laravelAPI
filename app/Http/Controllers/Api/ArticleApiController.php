@@ -31,14 +31,6 @@ class ArticleApiController extends Controller
         return ArticleResource::collection($articles);
 
     }
-    public function indexBackend(){
-        $articles = Article::all();
-        //$article = Article::find(5)->user;
-
-        //$article = Article::find(1)->user();
- 
-        return view('articles', compact('articles'));
-    }   
     
 
     /**
