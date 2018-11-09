@@ -4,9 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-use App\User;
-
-class Api
+class ForceJsonResponse
 {
     /**
      * Handle an incoming request.
@@ -15,12 +13,9 @@ class Api
      * @param  \Closure  $next
      * @return mixed
      */
-
-    public function handle($request, Closure $next, $guard = null)
+    public function handle(Request $request, Closure $next)
     {
-
+        $request->headers->set('Accept', 'application/json');
         return $next($request);
-
     }
-
 }

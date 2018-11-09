@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'api' => \App\Http\Middleware\Api::class, 
         'cors' => \Barryvdh\Cors\HandleCors::class,
+        'json.response' => \App\Http\Middleware\ForceJsonResponse::class,
     ];
 }

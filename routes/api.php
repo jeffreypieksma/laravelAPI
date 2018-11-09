@@ -13,31 +13,24 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('register', 'UserController@register');
 
-Route::group(['middleware' => 'api'], function () {
 
-	//User
-	Route::get('user', function (Request $request){
-		return $request->user();
-	});
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+	return $request->user();
+});
 
-	Route::post('login', 'UserController@authenticate');
-	Route::post('logout', 'UserController@logout');
-	Route::post('user/details', 'UserController@getUserDetails');
+// public routes
+Route::post('/login', 'Api\AuthController@login')->name('login.api');
+Route::post('/register', 'Api\AuthController@register')->name('register.api');
 
-  	//Article list
-	Route::get('articles', 'ArticleApiController@index');
+Route::get('articles', 'ArticleApiController@index');
+Route::get('article/{id}', 'ArticleApiController@show');
 
-	//Single article
-	Route::get('article/{id}', 'ArticleApiController@show');
+// private routes
+Route::middleware('auth:api')->group(function () {
+	Route::get('/logout', 'Api\AuthController@logout')->name('logout');
 
-	//Create new article
 	Route::post('article/store', 'ArticleApiController@store');
-
-	//Update article 
 	Route::put('article/update', 'ArticleApiController@update');
-
-	//Delete article
 	Route::delete('article/{id}', 'ArticleApiController@destroy');
 });
